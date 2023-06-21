@@ -1,21 +1,57 @@
-import { Box, Flex, Image, Progress, Text } from "@chakra-ui/react";
-import React from "react";
+import {
+  Box,
+  CircularProgress,
+  CircularProgressLabel,
+  Flex,
+  Text,
+} from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 
-const GoalCart = () => {
+const GoalCart = ({ title, completeDays, totalDays, compTask, totalTask }) => {
+  const [borderColor, setborderColor] = useState("");
+  const DailyProgress = (compTask / totalTask) * 100;
+  const totalProgress = Math.floor((completeDays / totalDays) * 100);
+
+  useEffect(() => {
+    if (totalProgress < 1) {
+      setborderColor("red");
+    } else if (totalProgress <= 25) {
+      setborderColor("yellow");
+    } else if (totalProgress <= 50) {
+      setborderColor("Purple");
+    } else if (totalProgress <= 75) {
+      setborderColor("teal");
+    } else if (totalProgress <= 100) {
+      setborderColor("green");
+    }
+  }, []);
+
   return (
-    <Box border={"1px solid red"}>
-      <Flex justifyContent={"space-around"}>
-        <Image src="https://picsum.photos/200" alt="test" />
-        <Text textAlign={"center"}>Title</Text>
+    <Box
+      maxW="sm"
+      borderWidth="1px"
+      borderRadius="lg"
+      overflow="hidden"
+      p="4"
+      border={`2px solid ${borderColor}`}
+      bgColor={`${borderColor}.300`}
+      boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
+    >
+      <Flex align="center" justify="space-between">
+        <Box w="10" h="10" bg="gray.200" borderRadius="full" mr="4">
+          <Text>Icon</Text>
+        </Box>
+        <Text fontSize="lg" fontWeight="bold" mb="2">
+          {title}
+        </Text>
       </Flex>
-      <Progress hasStripe value={20} />
+      <Text mb="2">Remaining Days: {totalDays - completeDays}</Text>
+      <CircularProgress value={totalProgress} size="100px">
+        <CircularProgressLabel
+          maxW={"90px"}
+        >{`${completeDays} of ${totalDays}`}</CircularProgressLabel>
+      </CircularProgress>
     </Box>
-    // <div className="max-w-[400px] max-h-[200px] border border-red-500"  >
-    //   <img src="https://picsum.photos/200" alt="test" />
-    //   <p>Title</p>
-    //   <input type="range" />
-    //   <span></span>
-    // </div>
   );
 };
 
