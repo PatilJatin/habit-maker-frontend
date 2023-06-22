@@ -6,8 +6,16 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-const GoalCart = ({ title, completeDays, totalDays, compTask, totalTask }) => {
+const GoalCart = ({
+  id,
+  title,
+  completeDays,
+  totalDays,
+  compTask,
+  totalTask,
+}) => {
   const [borderColor, setborderColor] = useState("");
   const DailyProgress = (compTask / totalTask) * 100;
   const totalProgress = Math.floor((completeDays / totalDays) * 100);
@@ -37,20 +45,23 @@ const GoalCart = ({ title, completeDays, totalDays, compTask, totalTask }) => {
       bgColor={`${borderColor}.300`}
       boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
     >
-      <Flex align="center" justify="space-between">
-        <Box w="10" h="10" bg="gray.200" borderRadius="full" mr="4">
-          <Text>Icon</Text>
-        </Box>
-        <Text fontSize="lg" fontWeight="bold" mb="2">
-          {title}
-        </Text>
-      </Flex>
-      <Text mb="2">Remaining Days: {totalDays - completeDays}</Text>
-      <CircularProgress value={totalProgress} size="100px">
-        <CircularProgressLabel
-          maxW={"90px"}
-        >{`${completeDays} of ${totalDays}`}</CircularProgressLabel>
-      </CircularProgress>
+      <Link to={`/goal/${id}`}>
+        <Flex align="center" justify="space-between">
+          <Box w="10" h="10" bg="gray.200" borderRadius="full" mr="4">
+            <Text>Icon</Text>
+          </Box>
+          <Text fontSize="lg" fontWeight="bold" mb="2">
+            {title}
+          </Text>
+        </Flex>
+        <Text mb="2">Remaining Days: {totalDays - completeDays}</Text>
+        <CircularProgress value={totalProgress} size="100px">
+          <CircularProgressLabel maxW={"90px"}>
+            {/* {`${completeDays} of ${totalDays}`} */}
+            {`${totalProgress} %`}
+          </CircularProgressLabel>
+        </CircularProgress>
+      </Link>
     </Box>
   );
 };
