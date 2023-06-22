@@ -1,12 +1,11 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const GoalForm = () => {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const [days, setDays] = useState([]);
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [tasks, setTasks] = useState([]);
-
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
@@ -34,7 +33,7 @@ const GoalForm = () => {
 
   const handleAddTask = () => {
     const newTask = {
-      title: '',
+      title: "",
       currentStatus: false,
       prevStatus: false,
     };
@@ -50,20 +49,26 @@ const GoalForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Perform submission logic here
-    console.log('Form submitted:', { title, days, startDate, endDate, tasks });
+    console.log("Form submitted:", { title, days, startDate, endDate, tasks });
     // Reset form state
-    setTitle('');
+    setTitle("");
     setDays([]);
-    setStartDate('');
-    setEndDate('');
+    setStartDate("");
+    setEndDate("");
     setTasks([]);
   };
 
   return (
     <div className="max-w-md mx-auto">
-      <form className="bg-white shadow-md rounded px-8 py-6" onSubmit={handleSubmit}>
+      <form
+        className="bg-white shadow-md rounded px-8 py-6"
+        onSubmit={handleSubmit}
+      >
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="title"
+          >
             Title
           </label>
           <input
@@ -77,29 +82,76 @@ const GoalForm = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="days">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="days"
+          >
             Days
           </label>
           <select
-  className="shadow flex appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-  id="days"
-  multiple
-  value={days}
-  onChange={handleDaysChange}
-  required
->
-  <option className=' rounded-full border-red-20'  value="Sunday" selected>Sunday</option>
-  <option className=' rounded-full border-red-20'  value="Monday" selected>Monday</option>
-  <option className=' rounded-full border-red-20'  value="Tuesday" selected>Tuesday</option>
-  <option  className=' rounded-full border-red-20' value="Wednesday" selected>Wednesday</option>
-  <option  className=' rounded-full border-red-20' value="Thursday" selected>Thursday</option>
-  <option className=' rounded-full border-red-20'  value="Friday" selected>Friday</option>
-  <option className=' rounded-full border-red-20'  value="Saturday" selected>Saturday</option>
-</select>
- 
+            className="shadow flex appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="days"
+            multiple
+            value={days}
+            onChange={handleDaysChange}
+            required
+          >
+            <option
+              className=" rounded-full border-red-20"
+              value="Sunday"
+              selected
+            >
+              Sunday
+            </option>
+            <option
+              className=" rounded-full border-red-20"
+              value="Monday"
+              selected
+            >
+              Monday
+            </option>
+            <option
+              className=" rounded-full border-red-20"
+              value="Tuesday"
+              selected
+            >
+              Tuesday
+            </option>
+            <option
+              className=" rounded-full border-red-20"
+              value="Wednesday"
+              selected
+            >
+              Wednesday
+            </option>
+            <option
+              className=" rounded-full border-red-20"
+              value="Thursday"
+              selected
+            >
+              Thursday
+            </option>
+            <option
+              className=" rounded-full border-red-20"
+              value="Friday"
+              selected
+            >
+              Friday
+            </option>
+            <option
+              className=" rounded-full border-red-20"
+              value="Saturday"
+              selected
+            >
+              Saturday
+            </option>
+          </select>
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="startDate">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="startDate"
+          >
             Start Date
           </label>
           <input
@@ -112,7 +164,10 @@ const GoalForm = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="endDate">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="endDate"
+          >
             End Date
           </label>
           <input
@@ -125,7 +180,10 @@ const GoalForm = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="tasks">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="tasks"
+          >
             Tasks
           </label>
           {tasks.map((task, index) => (
@@ -169,4 +227,3 @@ const GoalForm = () => {
 };
 
 export default GoalForm;
-

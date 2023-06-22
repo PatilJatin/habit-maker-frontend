@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createContext } from "react";
 import { useContext, useEffect, useReducer } from "react";
-import reducer from "../reducers/userReducer";
+import reducer from "../reducer/userReducer";
 
 const UserContext = createContext();
 
@@ -11,10 +11,10 @@ const initialState = {
 };
 
 const UserProvider = ({ children }) => {
-  const API = "https://shopzilla-z3p7.onrender.com/api/v1";
+  const API = "http://localhost:3000/api/v1";
   const [state, dispatch] = useReducer(reducer, initialState);
-
   const setAuthStatusAndUserProfile = (status, userData) => {
+    console.log(userData);
     localStorage.setItem("isAuthenticated", JSON.stringify(status));
     localStorage.setItem("userProfile", JSON.stringify(userData));
     dispatch({
@@ -74,6 +74,7 @@ const UserProvider = ({ children }) => {
         deleteToken,
         checkToken,
         getToken,
+        API,
       }}
     >
       {children}

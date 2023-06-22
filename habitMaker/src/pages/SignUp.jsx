@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../context/authContext";
+
 const SignUp = () => {
+  const { API } = useUserContext();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,13 +26,38 @@ const SignUp = () => {
 
   const handlePhotoChange = (event) => {
     setPhoto(event.target.files[0]);
-
   };
 
-  const handleSubmit = () => {
-    console.log("submitted");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!name || !email || !password || !photo) {
+      toast.error("All fields are required");
+    } else if (password.length < 8) {
+      toast.error("Password should have 8 Characters");
+    }
 
-  }
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("photo", photo);
+
+    try {
+      console.log(API);
+      const response = await axios.post(`${API}/signup`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (response.status === 200) {
+        toast.success("Successfully registered");
+        history("/");
+      }
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
   return (
     <section className="bg-white">
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
@@ -132,7 +161,6 @@ const SignUp = () => {
                   className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                 >
                   Create Account{" "}
-                  <ArrowRight className="ml-2" size={16} />
                 </button>
               </div>
             </div>
