@@ -10,6 +10,8 @@ const AllRoutes = () => {
       <Route exact path="/" element={<Home />} />
       <Route exact path="/signin" element={<SignIn />} />
       <Route exact path="/signup" element={<SignUp />} />
+      <Route exact path="/goal/form" element={<GoalForm />} />
+
       {/* <Route path="/login" element={<Login />} /> */}
     </Routes>
   );
