@@ -13,11 +13,11 @@ const GoalCart = ({
   title,
   completeDays,
   totalDays,
-  compTask,
-  totalTask,
+  // compTask,
+  // totalTask,
 }) => {
   const [borderColor, setborderColor] = useState("");
-  const DailyProgress = (compTask / totalTask) * 100;
+  // const DailyProgress = (compTask / totalTask) * 100;
   const totalProgress = Math.floor((completeDays / totalDays) * 100);
 
   useEffect(() => {
