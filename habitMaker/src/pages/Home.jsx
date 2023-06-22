@@ -5,6 +5,7 @@ import { Box, Grid } from "@chakra-ui/react";
 const Home = () => {
   const Data = [
     {
+      id: 1,
       title: "Work",
       completeDays: 1,
       totalDays: 3,
@@ -12,6 +13,7 @@ const Home = () => {
       totalTask: 4,
     },
     {
+      id: 2,
       title: "Work",
       completeDays: 4,
       totalDays: 7,
@@ -19,6 +21,7 @@ const Home = () => {
       totalTask: 4,
     },
     {
+      id: 3,
       title: "Helth",
       completeDays: 18,
       totalDays: 21,
@@ -26,6 +29,7 @@ const Home = () => {
       totalTask: 4,
     },
     {
+      id: 4,
       title: "Private",
       completeDays: 6,
       totalDays: 30,
@@ -33,6 +37,7 @@ const Home = () => {
       totalTask: 4,
     },
     {
+      id: 5,
       title: "ETC",
       completeDays: 8,
       totalDays: 35,
