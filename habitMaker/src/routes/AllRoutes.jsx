@@ -5,7 +5,6 @@ import SignUp from "../pages/SignUp";
 import Home from "../pages/Home";
 import GoalForm from "../components/GoalForm";
 import Goal from "../pages/Goal";
-import GoalForm from "../components/GoalForm";
 import PrivateRoute from "./PrivateRoute";
 
 const AllRoutes = () => {
