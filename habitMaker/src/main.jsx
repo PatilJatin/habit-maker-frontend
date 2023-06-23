@@ -6,15 +6,18 @@ import { ChakraProvider } from "@chakra-ui/react";
 
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "./context/authContext.jsx";
+import GoalContextProvider from "./context/goalContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <UserProvider>
-      <ChakraProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ChakraProvider>
+      <GoalContextProvider>
+        <ChakraProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ChakraProvider>
+      </GoalContextProvider>
     </UserProvider>
   </React.StrictMode>
 );
