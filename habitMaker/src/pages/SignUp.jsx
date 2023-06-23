@@ -12,6 +12,8 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [photo, setPhoto] = useState(null);
   const history = useNavigate();
+
+  
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
@@ -26,6 +28,12 @@ const SignUp = () => {
 
   const handlePhotoChange = (event) => {
     setPhoto(event.target.files[0]);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
   };
 
   const handleSubmit = async (event) => {
