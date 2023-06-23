@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import GoalCart from "../components/GoalCart";
 import { Box, Grid } from "@chakra-ui/react";
+import { goalContext } from "../context/goalContext";
 
 const Home = () => {
+  const { allgoal } = useContext(goalContext);
+
   const Data = [
     {
       id: 1,
