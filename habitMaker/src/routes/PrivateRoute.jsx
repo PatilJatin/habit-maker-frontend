@@ -1,14 +1,15 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import { useUserContext } from "../context/authContext";
 
 const PrivateRoute = ({ children }) => {
-  const IsAuth = true;
+  const { isAuthenticated } = useUserContext();
   const { pathname } = useLocation();
 
-  if (IsAuth) {
+  if (isAuthenticated) {
     return <>{children}</>;
   } else {
-    return <Navigate to="/login" state={`${pathname}`} replace />;
+    return <Navigate to="/signin" state={`${pathname}`} replace />;
   }
 };
 
