@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { goalContext } from "../context/goalContext";
 
 const GoalForm = () => {
   const [title, setTitle] = useState("");
@@ -6,6 +7,9 @@ const GoalForm = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [tasks, setTasks] = useState([]);
+
+  const { createGoal } = useContext(goalContext);
+
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
@@ -50,6 +54,9 @@ const GoalForm = () => {
     e.preventDefault();
     // Perform submission logic here
     console.log("Form submitted:", { title, days, startDate, endDate, tasks });
+    createGoal({ title, days, startDate, endDate, tasks })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
     // Reset form state
     setTitle("");
     setDays([]);
