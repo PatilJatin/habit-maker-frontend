@@ -10,6 +10,13 @@ function SignIn() {
   const history = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -67,7 +74,10 @@ function SignIn() {
                 Create a free account
               </button>
             </p>
-            <form onSubmit={handleLogin} className="mt-8">
+            <form
+              onSubmit={handleLogin}
+              className="mt-8"
+            >
               <div className="space-y-5">
                 <div>
                   <label
